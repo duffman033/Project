@@ -3,6 +3,13 @@ security:
         App\Entity\User:
             algorithm: auto
 
+             # Définition des rôles utilisateurs 
+            role_hierarchy:
+               ROLE_AUTHOR: [ROLE_USER]
+               ROLE_EDITOR: [ROLE_AUTHOR]
+               ROLE_ADMIN : [ROLE_EDITOR]
+               ROLE_DEVELOPER : ROLE_ADMIN
+
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         # used to reload user from session & other features (e.g. switch_user)
@@ -24,7 +31,7 @@ security:
             logout:
                 path: app_logout
                 # where to redirect after logout
-                # target: app_login
+                target: app_login
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -35,5 +42,6 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+         - { path: ^/admin, roles: ROLE_ADMIN }
+         - { path: ^/profile, roles: ROLE_USER }
+         - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }

@@ -121,6 +121,9 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
+
+            // Confirm Password 
+            ->add('confirm_password', PasswordType::class)
         ;
     }
 
