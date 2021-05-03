@@ -1,18 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}S'inscrire{% endblock %}
+{% block title %}{% trans into 'fr_FR'%}S'inscrire {% endtrans %} {% endblock %}
 
 {% block body %}
+<div class="row d-flex justify-content-center align-items-center" style="padding-top : 95px;">
 <div class="container mt-5">
-    <div class="row">
-        <div class= "col-lg-4 offset-lg-4">
+    <div class="row g-2">
+        <div class= "col-md offset-md mt-2">
 
     {% for flashError in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
 
 
-    <h3 "class= form_registration mt-5">Créez votre compte</h3>
+    <h3 class= "form_registration">Créez votre compte</h3>
 
     {{ form_start(registrationForm, {
         attr: {
@@ -35,11 +36,25 @@
       </div>
              <div class="form-group">
         {{form_label(registrationForm.birthdate)}}
-        {{form_widget(registrationForm.birthdate)}}
+
+		 <div class="row">
+		<div class="col-4">
+        {{form_widget(registrationForm.birthdate.day)}}
+		</div>
+		<div class="col-4">
+        {{form_widget(registrationForm.birthdate.month)}}
+		</div>
+		<div class="col-4">
+        {{form_widget(registrationForm.birthdate.year)}}
+		</div>
         {{form_help(registrationForm.birthdate)}}
         {{form_errors(registrationForm.birthdate)}}
       </div>
+	  </div>
+</div>
 
+
+<div class= "col-md offset-md mt-5">
            <div class="form-group">
         {{form_label(registrationForm.email)}}
         {{form_widget(registrationForm.email)}}
@@ -48,10 +63,15 @@
       </div>
 
              <div class="form-group">
-        {{form_label(registrationForm.plainPassword)}}
-        {{form_widget(registrationForm.plainPassword)}}
-        {{form_help(registrationForm.plainPassword)}}
-        {{form_errors(registrationForm.plainPassword)}}
+        {{form_label(registrationForm.plainPassword.first)}}
+        {{form_widget(registrationForm.plainPassword.first)}}
+        {{form_help(registrationForm.plainPassword.first)}}
+        {{form_errors(registrationForm.plainPassword.first)}}
+     
+        {{form_label(registrationForm.plainPassword.second)}}
+        {{form_widget(registrationForm.plainPassword.second)}}
+        {{form_help(registrationForm.plainPassword.second)}}
+        {{form_errors(registrationForm.plainPassword.second)}}
       </div>
 
                <div class="form-group">
@@ -68,8 +88,9 @@
         {# Redirection vers la page de connexion de compte #}
          <a href="{{ path('app_login') }}">Connectez-vous à votre compte</a>
 
+				</div>
             </div>
          </div>
-    </div>
-   
+		 </div>
+       
 {% endblock %}

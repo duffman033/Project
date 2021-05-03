@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -98,32 +99,51 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-
+        
+                
             //Password 
-            ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
-                'label'=> "Mot de passe",
-                'mapped' => false,
-                'attr'=> [
-                    'placeholder'=> "Saisir votre mot de passe"
+            ->add('plainPassword', RepeatedType::class, [
+                'type'=> PasswordType::class,
+
+                // Pas de label sur le champ "repeated
+                'label'=>false,
+
+                'required'=> true,
+                'mapped'=> false,
+
+                // Option du premier champ
+                'first_options'=> [
+                    'label' =>"Mot de passe",
+                    'attr'=>[
+                        'placeholder'=> "Saisir votre mot de passe",
+                    ],
+                    'constraints'=> [
+                        new NotBlank([
+                            'message'=> "Nouveau mot de passe requis",
+                        ]),
+                        new Length([
+                            'min'=> 6,
+                            'minMessage'=> "Minimum de 6 caractères",
+                            'max'=> 32,
+                            'maxMessage'=> "Maximum de 32 caractères",
+                        ]),
+                    ]
                 ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Ecrivez votre mot de passe',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Minimum 6 caractères',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 30,
-                        'maxMessage' => 'Maximum 30 caractères',
-                    ]),
+
+                // Option du second champ
+                'second_options'=> [
+                    'label'=> "Confirmation du mot de passe",
+                    'attr'=>[
+                        'placeholder'=> "Répétez votre mot de passe",
+                    ]
                 ],
+          
+                // Message d'erreur
+                'invalid_message'=> "Les champs ne sont pas identiques",
             ])
 
-            // Confirm Password 
-            ->add('confirm_password', PasswordType::class)
+
+    
         ;
     }
 

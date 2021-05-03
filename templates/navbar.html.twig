@@ -1,6 +1,6 @@
 <header>
     <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container"><a href="#" style="color:#41abb9" class="navbar-brand text-uppercase font-weight-bold">Project</a>
+        <div class="container"><a href="{{path('homepage')}}" style="color:#41abb9" class="navbar-brand text-uppercase font-weight-bold">Project</a>
             <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
 
             <div id="navbarSupportedContent" class="collapse navbar-collapse">
@@ -8,23 +8,21 @@
                     <li class="nav-item active"><a href=" {{path('homepage')}} " class="nav-link text-uppercase font-weight-bold">Homepage <span class="sr-only">(current)</span></a></li>
                     <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">HomeRRR</a></li>
                     <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">Home</a></li>
-<<<<<<< HEAD
                     <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">Home</a></li>
                     <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">Home</a></li>
                     <li class="nav-item"><a href="{{path ('blogpost_blog')}}" class="nav-link text-uppercase font-weight-bold">Blog</a></li>
-                    <form class="form-inline my-2 my-lg-0">
-                        <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold"><i class="ri-login-circle-line"></i> S'inscrire</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold"><i class="ri-login-circle-line"></i> Connexion</a></li>
-                    </form>
-                    {#        <form class="form-inline my-2 my-lg-0">#}
-                    {#            <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold"><i class="ri-profile-line"></i> Mon compte</a></li>#}
-                    {#            <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">< i class ="ri-logout-circle-line"></i > Deconnextion</a></li>#}
-                    {#        </form>#}
-=======
-                    
-                    <li class="nav-item"><a href=" {{path('app_login')}} " class="nav-link text-uppercase font-weight-bold">Connexion</a></li>
-                    <li class="nav-item"><a href="{{path('app_register')}}" class="nav-link text-uppercase font-weight-bold">Inscription</a></li>
->>>>>>> c2a9dcfed35ad7b190a775bdb12780616ccf0828
+
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <form class="form-inline my-2 my-lg-0">
+                            <li class="nav-item"><a href="{{path('user')}}" class="nav-link text-uppercase font-weight-bold" style="color: #2fd02f"><i class="ri-profile-line"></i> Mon compte</a></li>
+                            <li class="nav-item"><a href="{{path('app_logout')}}" class="nav-link text-uppercase font-weight-bold" style="color: #9c0404"><i class ="ri-logout-circle-line"></i > Deconnextion</a></li>
+                        </form>
+                    {% else %}
+                        <form class="form-inline my-2 my-lg-0">
+                            <li class="nav-item"><a href="{{path('app_register')}}" class="nav-link text-uppercase font-weight-bold" style="color: #2fd02f"><i class="ri-login-circle-line"></i> S'inscrire</a></li>
+                            <li class="nav-item"><a href="{{path('app_login')}}" class="nav-link text-uppercase font-weight-bold" style="color: #2f98d0"><i class="ri-login-circle-line"></i> Connexion</a></li>
+                        </form>
+                    {% endif %}
                 </ul>
             </div>
         </div>
