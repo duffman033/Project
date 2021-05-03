@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% set body_class = 'admin' %}
+{% block title %}Editer un post{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 style="margin-top: 50px">Editer un post</h1>
+
+        {{ include('blogpost/_form.html.twig') }}
+
+        <a href="{{ path('blogpost_index') }}"><i class="ri-arrow-left-line"></i>Retourner au blog</a>
+        {{ include('blogpost/_delete_form.html.twig') }}
+
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/images.js') }}"></script>
+{% endblock %}

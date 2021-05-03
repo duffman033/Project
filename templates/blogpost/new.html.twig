@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% set body_class = 'admin' %}
+{% block title %}Nouveau Post{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 style="margin-top: 50px">Créer un nouveau post</h1>
+
+        {{ include('blogpost/_form.html.twig') }}
+
+        <a href="{{ path('blogpost_index') }}"><i class="ri-arrow-left-line"></i>Retourner au blog</a>
+    </div>
+
+{% endblock %}

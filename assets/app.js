@@ -7,15 +7,13 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
-import './styles/script.js'
+import './styles/script.js';
 global.$ = global.jQuery = $;
+import './images';
 // start the Stimulus application
 import './bootstrap';
-
 import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
 import 'jquery';
-import "leaflet";
-import "@ansur/leaflet-pulse-icon/dist/L.Icon.Pulse.css";
 import 'popper.js';
-import 'remixicon/fonts/remixicon.css'
+import 'remixicon/fonts/remixicon.css';
