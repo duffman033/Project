@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    <header class="masthead">
+        <div class="intro-body">
+            <div class="container col-12 d-flex flex-column align-items-center">
+                <div class="card" style="width: 60vw;">
+                    {% for image in host.images %}
+                        {% for image in host.images %}
+                            <img class="card-img-top" src="{{ asset('/uploads/'~image.name) }}" alt="Card image cap">
+                        {% endfor %}
+                    {% endfor %}
+                    <div class="card-body">
+                        <p class="card-text">{{ host.summarise }}</p>
+                    </div>
+                    <a href="{{ path('host_index') }}"><i class="ri-arrow-left-line"></i>Retourner au blog</a>
+                </div>
+            </div>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('host_edit', {'id': host.id}) }}">edit</a>
+                {{ include('host/_delete_form.html.twig') }}
+            {% endif %}
+        </div>
+    </header>
+{% endblock %}

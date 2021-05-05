@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer votre nouvelle location{% endblock %}
+
+{% block body %}
+<div class="jumbotron_host p-4 p-md-5 text-white rounded bg-dark">
+    <div class="col-md-6 px-0">
+        <h4 class="font-italic">PUBLIEZ UNE ANNONCE POUR VOTRE TERRAIN, VOTRE JARDIN, VOTRE HÉBERGEMENT NATURE OU INSOLITE GRATUITEMENT.</h4>
+        <p class="lead my-3">Faites des rencontres enrichissantes tout en générant un complément de revenu.</p>
+    </div>
+</div>
+
+        
+    {{ include('host/_form.html.twig') }}
+   
+
+{% endblock %}

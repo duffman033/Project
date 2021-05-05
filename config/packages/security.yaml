@@ -4,11 +4,9 @@ security:
             algorithm: auto
 
              # Définition des rôles utilisateurs 
-#            role_hierarchy:
-#               ROLE_AUTHOR: [ROLE_USER]
-#               ROLE_EDITOR: [ROLE_AUTHOR]
-#               ROLE_ADMIN : [ROLE_EDITOR]
-#               ROLE_DEVELOPER : ROLE_ADMIN
+    role_hierarchy:
+        ROLE_HOST: [ROLE_USER]
+        ROLE_ADMIN: [ROLE_HOST]
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
@@ -42,6 +40,6 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-         - { path: ^/admin, roles: ROLE_ADMIN }
+         - { path: ^/dashboard, roles: ROLE_ADMIN }
          - { path: ^/profile, roles: ROLE_USER }
          - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }

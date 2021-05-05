@@ -24,13 +24,19 @@
                 <h4>Info utilisateur</h4>
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                        <p>Nom : {{ app.user.lastname }}</p>
+                        <p>Nom : {{ app.user.lastname }} </p>
                         <p>Prénom : {{ app.user.firstname }}</p>
                         <p>E-mail : {{ app.user.email }}</p>
                     </div>
                     <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">...</div>
                     <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
-                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
+                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                        {% if is_granted('ROLE_HOST') %}
+                                <p>Vous êtes déja un hôte</p>
+                            {% else %}
+                                <a href="{{ path('sethoste') }}" class="">Devenir hote</a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>

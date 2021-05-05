@@ -17,4 +17,22 @@ class UserController extends AbstractController
             'controller_name' => 'UserController',
         ]);
     }
+
+    /**
+     * @Route("/sethoste", name="sethoste")
+     */
+    public function sethoste(): Response
+    {
+
+
+        $user = $this->getUser();
+        $user->setRoles(['ROLE_HOST']);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_logout');
+    }
+
 }

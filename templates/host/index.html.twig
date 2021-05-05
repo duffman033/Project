@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Trouvez votre location{% endblock %}
+
+{% block body %}
+    <h1>accueil</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for host in hosts %}
+            <tr>
+                <td>{{ host.id }}</td>
+                <td>
+                    <a href="{{ path('host_show', {'id': host.id}) }}">Voir</a>
+                    <a href="{{ path('host_edit', {'id': host.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">aucune recherche trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('host_new') }}">Créer une publication</a>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blogpost index{% endblock %}
+
+{% block body %}
+    <main role="main">
+
+        <div class="jumbotron host_img text-center">
+            <div class="container">
+            </div>
+        </div>
+        <div class="album">
+            <div class="container">
+                <h3>Les Terrains Disponibles</h3>
+                <br>
+                <p>Voici une liste de tout les terrains disponibles pour une réservation.</p>
+                <div class="row">
+                    {% for host in hosts %}
+                        <div class="col-md-4">
+                            <div class="card mb-4 shadow-sm">
+                                {% for image in host.images %}
+                                    {% for image in host.images %}
+                                        <div>
+                                            <img src="{{ asset('/uploads/'~image.name) }}" alt="" width="100%">
+                                        </div>
+                                    {% endfor %}
+                                {% endfor %}
+                                <div class="card-body">
+                                    <p class="card-text">{{ host.summarise }}</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <a class="btn btn-sm btn-outline-secondary" href="{{ path('host_show', {'id': host.id}) }}">Voir</a>
+                                        </div>
+                                        <small class="text-muted">9 mins</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </main>
+{% endblock %}

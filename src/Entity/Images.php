@@ -28,6 +28,11 @@ class Images
      */
     private $blogpost;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Host", inversedBy="images")
+     */
+    private $host;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -54,6 +59,18 @@ class Images
     public function setBlogpost(?Blogpost $blogpost): self
     {
         $this->blogpost = $blogpost;
+
+        return $this;
+    }
+
+    public function getHost(): ?Host
+    {
+        return $this->host;
+    }
+
+    public function setHost(?Host $host): self
+    {
+        $this->host = $host;
 
         return $this;
     }

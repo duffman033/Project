@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Environnement index{% endblock %}
+
+{% block body %}
+    <h1>Environnement index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Region</th>
+                <th>Theme</th>
+                <th>Description</th>
+                <th>Adresse</th>
+                <th>Number_phone</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for environnement in environnements %}
+            <tr>
+                <td>{{ environnement.id }}</td>
+                <td>{{ environnement.Title }}</td>
+                <td>{{ environnement.Region }}</td>
+                <td>{{ environnement.Theme }}</td>
+                <td>{{ environnement.Description }}</td>
+                <td>{{ environnement.Adresse }}</td>
+                <td>{{ environnement.NumberPhone }}</td>
+                <td>
+                    <a href="{{ path('environnement_show', {'id': environnement.id}) }}">show</a>
+                    <a href="{{ path('environnement_edit', {'id': environnement.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('environnement_new') }}">Create new</a>
+{% endblock %}

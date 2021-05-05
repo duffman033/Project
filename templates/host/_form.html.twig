@@ -1,0 +1,349 @@
+{{ form_start(form) }}
+    <div class="container mt-3 form shadow p-3 mb-5 bg-white rounded">
+
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+            <a class="nav-link active " id="pills-informations-tab" data-toggle="pill" href="#pills-informations" role="tab" aria-controls="pills-informations" aria-selected="true">Informations de base</a>
+            </li>
+            <li class="nav-item" role="presentation">
+            <a class="nav-link" id="pills-Description-tab" data-toggle="pill" href="#pills-Description" role="tab" aria-controls="pills-Description" aria-selected="false">Description</a>
+            </li>
+            <li class="nav-item" role="presentation">
+            <a class="nav-link" id="pills-Photos-tab" data-toggle="pill" href="#pills-Photos" role="tab" aria-controls="pills-contact" aria-selected="false">Photos</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="pills-Adresse-tab" data-toggle="pill" href="#pills-Adresse" role="tab" aria-controls="pills-Adresse" aria-selected="false">Adresse</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="pills-Prix-tab" data-toggle="pill" href="#pills-Prix" role="tab" aria-controls="pills-Prix" aria-selected="false">Prix</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="pills-Calendrier-tab" data-toggle="pill" href="#pills-Calendrier" role="tab" aria-controls="pills-Calendrier" aria-selected="false">Calendrier</a>
+            </li>
+        </ul>
+
+
+<div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-informations" role="tabpanel" aria-labelledby="pills-informations-tab">
+
+        <label>
+            <strong>Qui voulez-vous acceptez ?</strong> 
+        </label>
+        <br>
+        <br>
+        <div class="form-check form-check-inline">
+
+                        <div>
+                                {{ form_widget(form.forVans) }}
+                                {{ form_label(form.forVans) }}
+                                {{ form_errors(form.forVans) }}
+                        </div>
+
+                        <div >
+                                {{ form_widget(form.forCaravans) }}
+                                {{ form_label(form.forCaravans) }}
+                                {{ form_errors(form.forCaravans) }}
+                        </div>
+
+                        <div>
+                                {{ form_widget(form.forCars) }}
+                                {{ form_label(form.forCars) }}
+                                {{ form_errors(form.forCars) }}
+                        </div>
+
+                        <div>
+                            {{ form_widget(form.forMotorcycles) }}
+                            {{ form_label(form.forMotorcycles) }}
+                            {{ form_errors(form.forMotorcycles) }}
+                        </div>
+
+                        <div>
+                            {{ form_widget(form.forTents) }}
+                            {{ form_label(form.forTents) }}
+                            {{ form_errors(form.forTents) }}
+                        </div>
+                    </div>
+                    <br><br>
+
+                        <label>
+                        <strong>Superficie du terrain ?</strong> 
+                        </label>
+
+                        <div class="row ">
+                            <div class="col-8 ">
+                                <div>
+                                    {{ form_widget(form.superficy) }}
+                                    {{ form_errors(form.superficy) }}
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+
+                        <label>
+                        <strong>Capacité d'hebergement ?</strong> 
+                        </label>
+
+                        <div class="row ">
+                            <div class="col-8 ">
+                                <div>
+                                    {{ form_widget(form.number_of_people) }}
+                                    {{ form_errors(form.number_of_people) }}
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+
+                <label>
+                 <strong> Situation:</strong> 
+                 </label><br><br>
+
+                 <div class="form-check form-check-inline">
+
+                        <div>
+                            {{ form_widget(form.country) }}
+                            {{ form_errors(form.country) }}
+                        </div>
+
+                        <div>
+                            {{ form_widget(form.Mountain) }}
+                            {{ form_errors(form.Mountain) }}
+                        </div>
+
+                        <div>
+                            {{ form_widget(form.Lake) }}
+                            {{ form_errors(form.Lake) }}
+                        </div>
+
+                        <div>
+                            {{ form_widget(form.City) }}
+                            {{ form_errors(form.City) }}
+                        </div>
+
+                        <div>
+                            {{ form_widget(form.Sea) }}
+                            {{ form_errors(form.Sea) }}
+                        </div>
+                </div><br><br>
+            
+     </div>
+
+                              <!-- ONGLET DESCRIPTIONS  -->
+                              <!-- ONGLET DESCRIPTIONS  -->
+                              
+    <div class="tab-pane fade" id="pills-Description" role="tabpanel" aria-labelledby="pills-Description-tab">
+
+        <h5>Parlez-nous de votre terrain</h5>
+
+        <label>
+           <strong>Résumé :</strong> 
+        </label>
+
+         <div class="row ">
+            <div class="col-8 ">
+                <div>
+                    {{ form_widget(form.Summarise) }}
+                    {{ form_errors(form.Summarise) }}  
+                </div>
+            </div>
+        </div>
+        <p>Chaque annonce sur Camping Garden est unique. Mettez en avant ce qui rend votre lieu accueillant.<br>
+             C’est ce que les voyageurs liront en premier sur votre annonce.</p>
+
+        <label>
+            <strong> cadre:</strong>
+        </label>
+
+        <div class="row ">
+            <div class="col-8 ">
+        <div>
+            {{ form_widget(form.The_Setting) }}
+            {{ form_errors(form.The_Setting) }}
+
+        <p>Vous pouvez décrire aux voyageurs l’atmosphère du lieu dans lequel ils séjourneront. (bruit, lumière, trafic, vue, végétation…)</p>
+        </div>
+        </div>
+            </div>
+
+        <label>
+          <strong>Les emplacements:</strong> 
+        </label>
+
+        <div class="row ">
+            <div class="col-8 ">
+        <div>
+            {{ form_widget(form.the_pitches) }}
+            {{ form_errors(form.the_pitches) }}
+        <P>Indiquez plus précisément aux voyageurs les emplacements où ils pourront s’installer. Y a t il de l’ombre ? Le terrain est-il plat ? Est-ce facile d’accès ? Y a t-il des dimensions maximales pour les tentes ou les caravanes / camping-cars ?</P>
+        </div>
+        </div>
+             </div>
+
+        <label>
+            <strong>Les sanitaires:</strong>
+         </label>
+ 
+         <div class="row ">
+            <div class="col-8 ">
+         <div>
+             {{ form_widget(form.The_Sanitary_Facilities) }}
+             {{ form_errors(form.The_Sanitary_Facilities) }}
+        <p>Indiquez aux voyageurs des précisions concernant les sanitaires : des horaires ? de l’eau chaude ? un lavabo ? à l’extérieur ?</p>    
+        </div>
+        </div>
+             </div>
+
+        <label>
+            <strong>Les équipements:</strong>
+         </label>
+ 
+         <div class="row ">
+            <div class="col-8 ">
+         <div>
+             {{ form_widget(form.The_Equipement) }}
+             {{ form_errors(form.The_Equipement) }}
+        <p>Apportez des précisions concernant les équipements mis à disposition.<br>
+            -Internet.<br>
+            -La cuisine. Fournissez-vous des équipements de cuisine (four, micro-onde, grille pain, bouilloire...) ? de la vaisselle et des casseroles ? des éléments de base (sel, poivre, sucre...) ?<br>
+            -L’électricité. La prise est-elle à l’extérieur ou à l’intérieur de la maison ? Fournissez-vous une rallonge si besoin ? Est-il possible de laisser son portable à charger facilement ?</p>        
+        </div>
+        </div>
+            </div>
+
+        <label>
+           <strong>Autres remarques:</strong> 
+         </label>
+ 
+         <div class="row ">
+            <div class="col-8 ">
+         <div>
+             {{ form_widget(form.Other_Remarks) }}
+             {{ form_errors(form.Other_Remarks) }}
+        <p>Indiquez aux voyageurs d’autres remarques que vous jugez utiles.</p>        
+        </div>
+        </div>
+             </div>
+
+        <p><strong>prêter une tente aux campeurs ?</strong> </p>
+
+        <div>
+            {{ form_widget(form.Loan) }}
+            {{ form_errors(form.Loan) }}
+        </div><br>
+        
+
+        <label>
+            <strong>Règles du terrain:</strong>
+        </label>
+            <div class="row ">
+                <div class="col-8 ">
+                    <div>
+                        {{ form_widget(form.Rules_of_the_field) }}
+                        {{ form_errors(form.Rules_of_the_field) }}
+                    </div>
+                 </div>
+            </div>
+
+        <p>Précisez les différentes règles à respecter. Horaires, Accès, Fumeurs, Enfants...</p>
+
+    </div>
+
+                    <!-- ONGLET PHOTOS ! -->
+                    <!-- ONGLET PHOTOS ! -->
+
+    <div class="tab-pane fade" id="pills-Photos" role="tabpanel" aria-labelledby="pills-Photos-tab">
+        
+        <h5>La première sera l’image principale. Choisissez-la bien !</h5>
+        <h6>Astuce: Ajoutez une belle photo des alentours qui fait rêver...</h6>
+
+        <div class="form-group">
+            {{ form_label(form.images) }}
+            {{ form_widget(form.images) }}
+            {{ form_errors(form.images) }}
+            {{ form_help(form.images) }}
+        </div>
+
+    </div>
+                    <!--ONGLET ADRESSE !  -->
+                    <!--ONGLET ADRESSE !  -->
+
+    <div class="tab-pane fade" id="pills-Adresse" role="tabpanel" aria-labelledby="pills-Adresse-tab">
+            
+        <label>
+           <strong> Adresse</strong>
+        </label>
+
+            <div class="row">
+                <div class="col-lg-6 ofsset-lg-6">
+
+                    {{ form_widget(form.adress) }}
+                    {{ form_errors(form.adress) }}
+                </div> 
+            </div><br>
+
+                    <div class="row">
+                        <div class="col-lg-6 ofsset-lg-6">
+
+                            <p><strong>De quelle région venez-vous ?</strong></p>
+                                
+                                {{ form_widget(form.region) }}
+                                {{ form_errors(form.region) }}
+                        </div> <br>
+                    </div><br>
+     </div>
+
+
+                    <!--ONGLET PRIX !  -->
+                    <!--ONGLET PRIX !  -->
+
+    <div class="tab-pane fade" id="pills-Prix" role="tabpanel" aria-labelledby="pills-Prix-tab">
+        <div class="row">
+            <div class="col-lg-6 ofsset-lg-6">
+
+                 <h2><strong>Prix / Nuit</strong></h2>
+
+                    <p>Le prix moyen constaté est de 7,5€ / nuit pour une personne soit 15€ / nuit pour deux personnes,
+                    mais adaptez votre prix en fonction des prix des campings aux alentours, de l’attractivité touristique de votre région et des services que vous offrez !</p>
+
+                            {{ form_label(form.price_of_location) }}
+                            {{ form_widget(form.price_of_location) }}
+                            {{ form_errors(form.price_of_location) }}<br>
+
+
+                            <h2><strong>Prix / Options</strong></h2>
+             
+                                <p><strong>Prix par options par personnes</strong></p>
+                                    {{ form_widget(form.price_for_options) }}
+                                    {{ form_errors(form.price_for_options) }}
+            </div>
+        </div>
+    </div>
+    <br>
+
+
+
+    <button class="btn btn-outline-success"><i class="ri-send-plane-line"></i> {{ button_label|default('Publier') }}</button>
+    <a href="{{ path('host_index') }}" class="btn btn-outline-info"><i class="ri-home-2-line"></i> Retour à l'accueil</a>
+</div>
+</div>
+
+{% if app.request.attributes.get('_route') == 'host_edit' %}
+    <h2>Images</h2>
+    {% for image in host.images %}
+        <div>
+            <img src="{{ asset('/uploads/'~image.name) }}" alt="" width="150">
+
+
+            <a href="{{ path('host_delete_image', {id: image.id})}}" data-delete data-token="{{ csrf_token('delete' ~ image.id )}}">Supprimer</a>
+        </div>
+    {% endfor %}
+{% endif %}
+    {{ form_end(form) }}
+
+
+
+
+    
+
+
+
+  

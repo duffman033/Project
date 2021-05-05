@@ -1,0 +1,82 @@
+{{ form_start(form) }}
+<h4>Les champs marqués d'un <span style="color:red">*</span> sont obligatoires</h4>
+
+<div class="container mt-3 form shadow p-3 mb-5 bg-white rounded">
+    <div class="row">
+        <div class="col-8">
+            {{ form_label(form.Title) }}
+            {{ form_widget(form.Title) }}
+            {{ form_errors(form.Title) }}
+        </div>
+    </div>
+    <br>
+    <br>
+    <p><strong>Choisissez votre destination dans le menu déroulant.</strong></p>
+    <div class="row">
+        <div class="col-8">
+            <div class="d-flex">
+                {{ form_label(form.Region) }}
+                <p style="color:red">*</p>
+            </div>
+            {{ form_widget(form.Region) }}
+            {{ form_errors(form.Region) }}
+        </div>
+    </div>
+    <br>
+    <br>
+    <p><strong>Que souhaitez vous faire durant votre séjour.</strong></p>
+    <div class="row">
+        <div class="col-8">
+            <div class="d-flex">
+                {{ form_label(form.Theme) }}
+                <p style="color:red">*</p>
+            </div>
+            {{ form_widget(form.Theme) }}
+            {{ form_errors(form.Theme) }}
+    <br>
+    <br>
+
+        </div>
+    </div>
+
+    <p><strong>Décrivez en quelques lignes l'endroit où vous souhaiteriez vous installer, les mots clefs aideront à faciliter votre recherche.</strong></p>
+
+    <div class="row">
+        <div class="col-8">
+    <div class="d-flex">
+        {{ form_label(form.Description) }}
+        <p style="color:red">*</p>
+    </div>
+    {{ form_widget(form.Description) }}
+    {{ form_errors(form.Description) }}
+    <br>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-8">
+            {{ form_label(form.Adresse) }}
+            {{ form_widget(form.Adresse) }}
+            {{ form_errors(form.Adresse) }}
+            {{ form_help(form.Adresse) }} 
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-8">
+            {{ form_label(form.Number_phone) }}
+            {{ form_widget(form.Number_phone) }}
+            {{ form_errors(form.Number_phone) }} 
+            {{ form_help(form.Number_phone) }} 
+        </div>
+    </div>
+    <br>
+
+<br>
+<button class="btn btn-outline-success"><i class="ri-send-plane-line"></i> {{ button_label|default('Publier') }}</button>
+<a href="{{ path('environnement_index') }}" class="btn btn-outline-info"><i class="ri-home-2-line"></i> Retour à l'accueil</a>
+    </div>
+
+
+{{ form_end(form) }}

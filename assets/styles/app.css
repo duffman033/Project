@@ -180,6 +180,14 @@ hr.style1 {
     background-repeat: no-repeat;
     background-position: center center;
 }
+.host_img{
+    background-image: url("../img/hote_index.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100vw;
+    height: 30vh;
+}
 .admin{
     background-image: url("../img/bodyadmin.jpg");
     background-repeat: no-repeat;
