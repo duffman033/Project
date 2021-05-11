@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Faq{% endblock %}
+{% block title %}Rédiger FAQ{% endblock %}
 
 {% block body %}
-    <h1>Edit Faq</h1>
+<div class="container mt-5">
+    <h1>Rédiger FAQ</h1>
 
-    {{ include('faq/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('faq/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('faq_index') }}">back to list</a>
+    <a href="{{ path('faq_index') }}">Retour à l'index</a>
 
     {{ include('faq/_delete_form.html.twig') }}
+</div>
 {% endblock %}

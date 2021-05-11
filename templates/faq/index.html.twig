@@ -3,6 +3,8 @@
 {% block title %}FAQ index{% endblock %}
 
 {% block body %}
+
+<div class="container mt-5">
     <h1>FAQ index</h1>
 
     <table class="table">
@@ -11,6 +13,7 @@
                 <th>Id</th>
                 <th>Questions</th>
                 <th>Réponses</th>
+                <th>Catégories</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -20,6 +23,7 @@
                 <td>{{ faq.id }}</td>
                 <td>{{ faq.question }}</td>
                 <td>{{ faq.answer }}</td>
+                <td>{{ faq.Category }}</td>
                 <td>
                     <a href="{{ path('faq_show', {'id': faq.id}) }}">Montrer</a>
                     <a href="{{ path('faq_edit', {'id': faq.id}) }}">Editer</a>
@@ -32,6 +36,8 @@
         {% endfor %}
         </tbody>
     </table>
-
+    
     <a href="{{ path('faq_new') }}">Créer une nouvelle question/réponse</a>
+</div>
+    
 {% endblock %}

@@ -61,6 +61,8 @@ class HostType extends AbstractType
 
               // ONGLET DESCRIPTIONS //
 
+              ->add('title', TextType::class, array(
+                  'label' => 'Titre de votre annonce'))
             ->add('Summarise', TextareaType::class, array(
                 'label'=> 'Résumé'))
             ->add('The_Setting', TextareaType::class,array(
@@ -74,7 +76,7 @@ class HostType extends AbstractType
             ->add('Other_Remarks',TextareaType::class,array(
                 'label'=> 'Autres remarques'))
             ->add('Loan', CheckboxType::class,array(
-                'label'=> 'Prêt de tente possile',
+                'label'=> 'Prêt de tente possible',
                 'required'=> false))
             ->add('Rules_of_the_field', TextareaType::class,array(
                 'label'=> 'Règles du terrain',
@@ -123,7 +125,11 @@ class HostType extends AbstractType
             ->add('price_for_options', MoneyType::class, array(
                  'currency' => 'EUR',
                  'scale' => 2,
-            ))      
+            ))
+
+            // ONGLET OPTION //
+
+            ->add('Options',OptionsType::class)
         ;
     }
 

@@ -72,11 +72,46 @@
         </div>
     </div>
     <br>
+    <br>
+    <div class="row">
+        <div class="col-8">
+            <p>Sélectionner une image :</p>
+            <div class="form-group">
+                {{ form_label(form.images) }}
+                {{ form_widget(form.images) }}
+                {{ form_errors(form.images) }}
+                {{ form_help(form.images) }}
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-8">
+            <p>Sélectionner des options disponibles :</p>
+            <div class="form-group">
+                {{ form_label(form.Options) }}
+                {{ form_widget(form.Options) }}
+                {{ form_errors(form.Options) }}
+            </div>
+        </div>
+    </div>
+    <br>
 
 <br>
 <button class="btn btn-outline-success"><i class="ri-send-plane-line"></i> {{ button_label|default('Publier') }}</button>
 <a href="{{ path('environnement_index') }}" class="btn btn-outline-info"><i class="ri-home-2-line"></i> Retour à l'accueil</a>
     </div>
 
+{% if app.request.attributes.get('_route') == 'host_edit' %}
+    <h2>Images</h2>
+    {% for image in environnement.images %}
+        <div>
+            <img src="{{ asset('/uploads/'~image.name) }}" alt="" width="150">
 
+
+            <a href="{{ path('host_delete_image', {id: image.id})}}" data-delete data-token="{{ csrf_token('delete' ~ image.id )}}">Supprimer</a>
+        </div>
+    {% endfor %}
+{% endif %}
 {{ form_end(form) }}

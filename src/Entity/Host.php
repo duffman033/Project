@@ -85,22 +85,22 @@ class Host
     private $Lake = false;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
     private $Summarise;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
     private $The_Setting;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
     private $The_Sanitary_Facilities;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
     private $The_Equipement;
 
@@ -111,17 +111,17 @@ class Host
     private $Loan = false ;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
     private $Other_Remarks;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
     private $Rules_of_the_field;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
     private $the_pitches;
 
@@ -140,14 +140,37 @@ class Host
      */
     private $region;
 
+
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Images", mappedBy="host",cascade={"persist"})
      */
     private $images;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $title;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Options::class, inversedBy="hosts",cascade={"persist"})
+     */
+    private $Options;
+
+    /**
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="Host")
+     */
+    private $users;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="hosts")
+     */
+    private $User;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
+        $this->options = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     /**
@@ -470,6 +493,72 @@ class Host
     public function setRegion(string $region): self
     {
         $this->region = $region;
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getOptions(): ?Options
+    {
+        return $this->Options;
+    }
+
+    public function setOptions(?Options $Options): self
+    {
+        $this->Options = $Options;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->setHost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            if ($user->getHost() === $this) {
+                $user->setHost(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    public function setUser(?User $User): self
+    {
+        $this->User = $User;
 
         return $this;
     }

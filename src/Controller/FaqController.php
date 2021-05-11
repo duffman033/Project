@@ -15,11 +15,31 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class FaqController extends AbstractController
 {
+
+
     /**
-     * @Route("/", name="faq_index", methods={"HEAD","GET"})
+     * @Route("/", name="faq_public", methods={"GET"})
+     */
+    public function faq(FaqRepository $faqRepository): Response
+    {
+        $faq_general = $faqRepository->findBy(array('Category' => 'general'));
+        $faq_host = $faqRepository->findBy(array('Category' => 'host'));
+        $faq_traveler = $faqRepository->findBy(array('Category' => 'travelers'));
+        return $this->render('faq/faq.html.twig', [
+            'faq_generals' => $faq_general,
+            'faq_hosts' => $faq_host,
+            'faq_travelers'=> $faq_traveler,
+        ]);
+    }
+
+
+
+    /**
+     * @Route("/index", name="faq_index", methods={"GET"})
      */
     public function index(FaqRepository $faqRepository): Response
     {
+
         return $this->render('faq/index.html.twig', [
             'faqs' => $faqRepository->findAll(),
         ]);

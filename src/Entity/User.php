@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -50,6 +52,21 @@ class User implements UserInterface
      * @ORM\Column(type="datetime")
      */
     private $birthdate;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Host::class, inversedBy="users",cascade={"persist"})
+     */
+    private $Host;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Host::class, mappedBy="User")
+     */
+    private $hosts;
+
+    public function __construct()
+    {
+        $this->hosts = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -165,6 +182,48 @@ class User implements UserInterface
     public function setBirthdate(\DateTimeInterface $birthdate): self
     {
         $this->birthdate = $birthdate;
+
+        return $this;
+    }
+
+    public function getHost(): ?Host
+    {
+        return $this->Host;
+    }
+
+    public function setHost(?Host $Host): self
+    {
+        $this->Host = $Host;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Host[]
+     */
+    public function getHosts(): Collection
+    {
+        return $this->hosts;
+    }
+
+    public function addHost(Host $host): self
+    {
+        if (!$this->hosts->contains($host)) {
+            $this->hosts[] = $host;
+            $host->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHost(Host $host): self
+    {
+        if ($this->hosts->removeElement($host)) {
+            // set the owning side to null (unless already changed)
+            if ($host->getUser() === $this) {
+                $host->setUser(null);
+            }
+        }
 
         return $this;
     }

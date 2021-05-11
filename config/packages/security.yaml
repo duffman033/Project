@@ -40,6 +40,21 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+         - { path: ^/host/new, roles: ROLE_HOST }
+         - { path: ^/host/edit, roles: ROLE_HOST }
+         - { path: ^/host/delete, roles: ROLE_HOST }
+         - { path: ^/host/index, roles: ROLE_ADMIN }
+         - { path: ^/faq/index, roles: ROLE_ADMIN }
+         - { path: ^/faq/new, roles: ROLE_ADMIN }
+         - { path: ^/faq/edit, roles: ROLE_ADMIN }
+         - { path: ^/faq/delete, roles: ROLE_ADMIN }
+         - { path: ^/environnement/index, roles: ROLE_ADMIN }
+         - { path: ^/environnement/delete, roles: ROLE_ADMIN }
+         - { path: ^/environnement/edit, roles: ROLE_ADMIN }
+         - { path: ^/blogbost/index, roles: ROLE_ADMIN }
+         - { path: ^/blogbost/new, roles: ROLE_ADMIN }
+         - { path: ^/blogbost/edit, roles: ROLE_ADMIN }
+         - { path: ^/blogbost/delete, roles: ROLE_ADMIN }
          - { path: ^/dashboard, roles: ROLE_ADMIN }
          - { path: ^/profile, roles: ROLE_USER }
          - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }

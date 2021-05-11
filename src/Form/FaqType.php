@@ -21,7 +21,7 @@ class FaqType extends AbstractType
                 'label'=> "Ecrire le contenu",
             ])
             ->add('Category',ChoiceType::class,[
-                'label'=>"Categories",
+                'label'=>"Catégories",
                 'choices'=>[
                     'Général'=>'general',
                     'Hôtes'=>'host',

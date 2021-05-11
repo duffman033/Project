@@ -3,44 +3,74 @@
 {% block title %}Environnement{% endblock %}
 
 {% block body %}
-    <h1>Environnement</h1>
+    <header class="masthead">
+        <div class="intro-body">
+            <div class="container col-12 d-flex flex-column align-items-center">
+                <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 60vw;">
+                    {% for image in environnement.images %}
+                        {% for image in environnement.images %}
+                            <img class="card-img-top" src="{{ asset('/uploads/'~image.name) }}" alt="Card image cap">
+                        {% endfor %}
+                    {% endfor %}
+                    <div class="card-body">
+                        <h3>{{ environnement.Title }}</h3>
+                        <br>
+                        {% if environnement.Options.ElectricalCharge == true %}<h5 style="color: green"><i class="ri-check-double-line"></i>Dispose d'une borne de recharge pour véhicules électriques</h5>{% endif %}
+                        <br>
+                        <hr>
+                        <br>
+                        <p> Dans la région {{ environnement.Region }} {% if environnement.Adresse != NULL %}: {{ environnement.Adresse }}{% endif %}</p>
+                        <h5>{{ environnement.Theme }}</h5>
+                        <hr>
+                        <h4>Description :</h4>
+                        <p class="card-text">{{ environnement.Description }}</p>
+                        <hr>
+                        {% if  environnement.NumberPhone != NULL%}
+                        <h4>Téléphone :</h4>
+                        <p class="card-text">{{ environnement.NumberPhone }}</p>
+                        <hr>
+                        {% endif %}
+                        <div col-6>
+                            <h4>Options disponibles :</h4>
+                            <p {% if environnement.Options.Animals == false %}class="false"{% endif %}>Animaux acceptés</p>
+                            <p {% if environnement.Options.Barbecue == false %}class="false"{% endif %}>Barbecue</p>
+                            <p {% if environnement.Options.Electricity == false %}class="false"{% endif %}>Électricité</p>
+                            <p {% if environnement.Options.SwimmingPool == false %}class="false"{% endif %}>Piscine</p>
+                            <p {% if environnement.Options.WashingMachine == false %}class="false"{% endif %}>Lave-linge</p>
+                            <p {% if environnement.Options.Dryer == false %}class="false"{% endif %}>Sèche-linge</p>
+                            <p {% if environnement.Options.Wardrobe == false %}class="false"{% endif %}>Etendoir</p>
+                            <p {% if environnement.Options.Toilet1 == false %}class="false"{% endif %}>Toilettes indépendantes</p>
+                            <p {% if environnement.Options.Toilet2 == false %}class="false"{% endif %}>Toilettes (chez l’habitant)</p>
+                            <p {% if environnement.Options.IndependentShower == false %}class="false"{% endif %}>Douche indépendante</p>
+                            <p {% if environnement.Options.ShowerAtHome == false %}class="false"{% endif %}>Douche (chez l’habitant)</p>
+                            <p {% if environnement.Options.KitchenAtHome == false %}class="false"{% endif %}>Cuisine (chez l’habitant)</p>
+                            <p {% if environnement.Options.IndependentKitchen == false %}class="false"{% endif %}>Cuisine indépendante</p>
+                            <p {% if environnement.Options.IndependentRefrigerator == false %}class="false"{% endif %}>Réfrigérateur indépendant</p>
+                            <p {% if environnement.Options.RefrigeratorAtHome == false %}class="false"{% endif %}>Réfrigérateur (chez l’habitant)</p>
+                            <p {% if environnement.Options.PermittedNaturism == false %}class="false"{% endif %}>Naturisme autorisé</p>
+                            <p {% if environnement.Options.PrivateParking == false %}class="false"{% endif %}>Parking privé</p>
+                            <p {% if environnement.Options.GardenTable == false %}class="false"{% endif %}>Table de jardin</p>
+                            <p {% if environnement.Options.PermittedCampfire == false %}class="false"{% endif %}>Feu de camp autorisé</p>
+                            <p {% if environnement.Options.EnclosedTerrain == false %}class="false"{% endif %}>Terrain clos</p>
+                            <p {% if environnement.Options.TrainOrBus == false %}class="false"{% endif %}>Train ou Bus</p>
+                            <p {% if environnement.Options.Shops == false %}class="false"{% endif %}>Commerces</p>
+                            <p {% if environnement.Options.WaterDischarges == false %}class="false"{% endif %}>Rejet des eaux usées</p>
+                            <p {% if environnement.Options.ChildrensGames == false %}class="false"{% endif %}>Jeux pour enfants</p>
+                            <p {% if environnement.Options.HandicappedAccess == false %}class="false"{% endif %}>Accès handicapé</p>
+                            <p {% if environnement.Options.IndependentAccess == false %}class="false"{% endif %}>Accès indépendant</p>
+                            <p {% if environnement.Options.DrinkingWater == false %}class="false"{% endif %}>Eau potable</p>
+                            <p {% if environnement.Options.ElectricalCharge == false %}class="false"{% endif %}>Station de recharge pour véhicule</p>
+                            <p {% if environnement.Options.Internet == false %}class="false"{% endif %}>Internet sans fil</p>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ environnement.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ environnement.Title }}</td>
-            </tr>
-            <tr>
-                <th>Region</th>
-                <td>{{ environnement.Region }}</td>
-            </tr>
-            <tr>
-                <th>Theme</th>
-                <td>{{ environnement.Theme }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ environnement.Description }}</td>
-            </tr>
-            <tr>
-                <th>Adresse</th>
-                <td>{{ environnement.Adresse }}</td>
-            </tr>
-            <tr>
-                <th>Number_phone</th>
-                <td>{{ environnement.NumberPhone }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('environnement_index') }}">back to list</a>
-
-    <a href="{{ path('environnement_edit', {'id': environnement.id}) }}">edit</a>
-
-    {{ include('environnement/_delete_form.html.twig') }}
+                        </div>
+                    </div>
+                    <a href="{{ path('environnement_home') }}"><i class="ri-arrow-left-line"></i>Retourner à la liste</a>
+                </div>
+            </div>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a class="btn btn-info" href="{{ path('environnement_edit', {'id': environnement.id}) }}">edit</a>
+                {{ include('environnement/_delete_form.html.twig') }}
+            {% endif %}
+        </div>
+    </header>
 {% endblock %}

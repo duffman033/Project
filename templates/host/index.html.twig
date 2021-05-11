@@ -9,13 +9,18 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>actions</th>
+                <th>Titre</th>
+                <th>Nom de l'hôte</th>
+                <th>Région</th>
             </tr>
         </thead>
         <tbody>
         {% for host in hosts %}
             <tr>
                 <td>{{ host.id }}</td>
+                <td>{{ host.title }}</td>
+                <td>{{ host.user.lastname }}</td>
+                <td>{{ host.region }}</td>
                 <td>
                     <a href="{{ path('host_show', {'id': host.id}) }}">Voir</a>
                     <a href="{{ path('host_edit', {'id': host.id}) }}">Modifier</a>

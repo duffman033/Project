@@ -6,16 +6,96 @@
     <header class="masthead">
         <div class="intro-body">
             <div class="container col-12 d-flex flex-column align-items-center">
-                <div class="card" style="width: 60vw;">
+                <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 60vw;">
                     {% for image in host.images %}
                         {% for image in host.images %}
                             <img class="card-img-top" src="{{ asset('/uploads/'~image.name) }}" alt="Card image cap">
                         {% endfor %}
                     {% endfor %}
                     <div class="card-body">
+                        <h3>{{ host.title }}</h3>
+                        <br>
+                        {% if host.Options.ElectricalCharge == true %}<h5 style="color: green"><i class="ri-check-double-line"></i>Dispose d'une borne de recharge pour véhicules électriques</h5>{% endif %}
+                        <br>
+                        <p>Publié par : {{ host.User.firstname }} {{ host.User.lastname }}</p>
+                        <hr>
+                        <br>
+                        <p>Beau terrain d'une superficie de {{ host.superficy }}m² pouvant accueillir {{ host.NumberOfPeople }} personnes.</p>
+                        <p>{{ host.Adress }} dans la région {{ host.Region }}</p>
+                        <p>{% if host.PriceOfLocation != 0%}{{ host.PriceOfLocation }}€{% else %}Gratuit{% endif %} {% if host.PriceForOptions != 0%}Prix des options par personnes {{ host.PriceForOptions }}€{% endif %}</p>
+                        <hr>
+                        <h4>Localisation du terrain :</h4>
+                        <div style="display: flex; justify-content: space-evenly">
+                            <p {% if host.City == false %}class="false"{% endif %}>Ville</p>
+                            <p {% if host.Lake == false %}class="false"{% endif %}>Lacs</p>
+                            <p {% if host.Sea == false %}class="false"{% endif %}>Mer</p>
+                            <p {% if host.Mountain == false %}class="false"{% endif %}>Montagne</p>
+                            <p {% if host.Country == false %}class="false"{% endif %}>Campagne</p>
+                        </div>
+                        <hr>
+                        <h4>Ce qui est accepté :</h4>
+                        <div style="display: flex; justify-content: space-evenly">
+                            <p {% if host.forTents == false %}class="false"{% endif %}>Tentes</p>
+                            <p {% if host.forCaravans == false %}class="false"{% endif %}>Caravanes</p>
+                            <p {% if host.forVans == false %}class="false"{% endif %}>Vans</p>
+                            <p {% if host.forCars == false %}class="false"{% endif %}>Voitures</p>
+                            <p {% if host.forMotorcycles == false %}class="false"{% endif %}>Motos</p>
+                        </div>
+                        <hr>
+                        <h4>Description :</h4>
                         <p class="card-text">{{ host.summarise }}</p>
+                        <br>
+                        <p>{{ host.TheSetting }}</p>
+                        <br>
+                        <p>{{ host.ThePitches }}</p>
+                        <br>
+                        <p>{{ host.TheSanitaryFacilities }}</p>
+                        <br>
+                        <p>{{ host.TheEquipement }}</p>
+                        <br>
+                        <p>{{ host.OtherRemarks }}</p>
+                        <br>
+                        <p>Le prêt d'une tente est {% if host.Loan == true %}possible{% else %}impossible{% endif %}</p>
+                        <br>
+                        <h4>Règles du terrain:</h4>
+                        <p>{{ host.RulesOfTheField }}</p>
+                        <hr>
+                        <div col-6>
+                            <h4>Options disponibles :</h4>
+                            <p {% if host.Options.Animals == false %}class="false"{% endif %}>Animaux acceptés</p>
+                            <p {% if host.Options.Barbecue == false %}class="false"{% endif %}>Barbecue</p>
+                            <p {% if host.Options.Electricity == false %}class="false"{% endif %}>Électricité</p>
+                            <p {% if host.Options.SwimmingPool == false %}class="false"{% endif %}>Piscine</p>
+                            <p {% if host.Options.WashingMachine == false %}class="false"{% endif %}>Lave-linge</p>
+                            <p {% if host.Options.Dryer == false %}class="false"{% endif %}>Sèche-linge</p>
+                            <p {% if host.Options.Wardrobe == false %}class="false"{% endif %}>Etendoir</p>
+                            <p {% if host.Options.Toilet1 == false %}class="false"{% endif %}>Toilettes indépendantes</p>
+                            <p {% if host.Options.Toilet2 == false %}class="false"{% endif %}>Toilettes (chez l’habitant)</p>
+                            <p {% if host.Options.IndependentShower == false %}class="false"{% endif %}>Douche indépendante</p>
+                            <p {% if host.Options.ShowerAtHome == false %}class="false"{% endif %}>Douche (chez l’habitant)</p>
+                            <p {% if host.Options.KitchenAtHome == false %}class="false"{% endif %}>Cuisine (chez l’habitant)</p>
+                            <p {% if host.Options.IndependentKitchen == false %}class="false"{% endif %}>Cuisine indépendante</p>
+                            <p {% if host.Options.IndependentRefrigerator == false %}class="false"{% endif %}>Réfrigérateur indépendant</p>
+                            <p {% if host.Options.RefrigeratorAtHome == false %}class="false"{% endif %}>Réfrigérateur (chez l’habitant)</p>
+                            <p {% if host.Options.PermittedNaturism == false %}class="false"{% endif %}>Naturisme autorisé</p>
+                            <p {% if host.Options.PrivateParking == false %}class="false"{% endif %}>Parking privé</p>
+                            <p {% if host.Options.GardenTable == false %}class="false"{% endif %}>Table de jardin</p>
+                            <p {% if host.Options.PermittedCampfire == false %}class="false"{% endif %}>Feu de camp autorisé</p>
+                            <p {% if host.Options.EnclosedTerrain == false %}class="false"{% endif %}>Terrain clos</p>
+                            <p {% if host.Options.TrainOrBus == false %}class="false"{% endif %}>Train ou Bus</p>
+                            <p {% if host.Options.Shops == false %}class="false"{% endif %}>Commerces</p>
+                            <p {% if host.Options.WaterDischarges == false %}class="false"{% endif %}>Rejet des eaux usées</p>
+                            <p {% if host.Options.ChildrensGames == false %}class="false"{% endif %}>Jeux pour enfants</p>
+                            <p {% if host.Options.HandicappedAccess == false %}class="false"{% endif %}>Accès handicapé</p>
+                            <p {% if host.Options.IndependentAccess == false %}class="false"{% endif %}>Accès indépendant</p>
+                            <p {% if host.Options.DrinkingWater == false %}class="false"{% endif %}>Eau potable</p>
+                            <p {% if host.Options.ElectricalCharge == false %}class="false"{% endif %}>Station de recharge pour véhicule</p>
+                            <p {% if host.Options.Internet == false %}class="false"{% endif %}>Internet sans fil</p>
+
+                        </div>
                     </div>
-                    <a href="{{ path('host_index') }}"><i class="ri-arrow-left-line"></i>Retourner au blog</a>
+                    <button type="button" class="btn btn-info">Réserver</button>
+                    <a href="{{ path('host_host') }}"><i class="ri-arrow-left-line"></i>Retourner au blog</a>
                 </div>
             </div>
             {% if is_granted('ROLE_ADMIN') %}

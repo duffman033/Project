@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FAQ{% endblock %}
+
+{% block body %}
+        
+<div class="jumbotron faq_img text-center">
+</div>
+    <div class="container text-center">
+     
+  <h3>Comment pouvons-nous vous aider ?</h3>
+  <br>
+  <br>
+  <h3>Général</h3>
+  <br>
+  <div class="container">
+    {% for faq_general in faq_generals %}
+        <div class="dropdown" width="80vh" >
+            <button class="btn btn-outline-info btn-lg btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                {{ faq_general.question }}
+            </button>
+            <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
+                <p>{{ faq_general.answer }}</p>
+            </div>
+        </div>
+        <br>
+    {% endfor %}
+</div>
+  <br>
+  <br>
+  <h3>Hôtes</h3>
+  <br>
+  <div class="container">
+    {% for faq_host in faq_hosts %}
+        <div class="dropdown" width="80vh">
+            <button class="btn btn-outline-info btn-lg btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                {{ faq_host.question }}
+          </button>
+          <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
+                    <p>{{ faq_host.answer }}</p>   
+          </div>
+        </div>
+        <br>
+    {% endfor %}
+  </div>
+  <br>
+  <br>
+  <h3>Voyageurs</h3>
+  <br>
+  <div class="container">
+    {% for faq_traveler in faq_travelers %}
+        <div class="dropdown" width="80vh">
+          <button class="btn btn-outline-info btn-lg btn-block dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+              {{ faq_traveler.question }}
+          </button>
+          <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
+              <p>{{ faq_traveler.answer }}</p>
+          </div>
+        </div>
+        <br>
+    {% endfor %}
+  </div>
+  <br>
+  <br>
+</div>
+  
+{% endblock %}

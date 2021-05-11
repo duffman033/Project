@@ -1,152 +1,201 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomepageController!{% endblock %}
+{% block title %}Bienvenue - CampinGarden{% endblock %}
 
 {% block body %}
 
     <div class="head row d-flex">
         <div class="title">
-            <h1>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</h1>
-            <small>Lorem Ipsum is simply dummy text</small>
+            <h1>"Dans un voyage ce n'est pas la destination qui compte mais toujours le chemin parcouru et les détours surtout"</h1>
+            <small>Bienvenue sur CampinGarden</small>
         </div>
         <div class="search">
-            <h3>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</h3>
+            <h3>Vous souhaitez partir? Recherchez ici dans les villes qui vous intéressent</h3>
             <div class="input-group" id="search-input">
                 <div class="form-outline">
                     <input type="search" id="form1" class="form-control" placeholder="Search..."/>
                 </div>
-                <button type="button" class="btn btn-primary">
+                <button type="button" class="btn btn-info">
                     <i class="ri-search-line"></i> Recherchez
                 </button>
             </div>
         </div>
     </div>
-    <div id="map">
-        <!-- Ici s'affichera la carte -->
-    </div>
-    <div class="popular_content" style="max-width: 80vw; margin-left: auto; margin-right: auto">
 
-            <div class="popular">
-                <h3>Destinations Populaires</h3>
-                <br>
-                <hr class="style1">
-                <br>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
-            </div>
+
+<div class="popular text-center">
+    <h3>Météo</h3>
+    <hr class="style1">
+</div>
+<br>
+<div class="container d-flex justify-content-around align-items-center">
+
+            <form>
+                <div class="form-groupe">
+                    <input type="text" class="form-control" id='inputcity'/>
+                </div>
+
+                <button type="submit" class="btn btn-info btn-block">Rechercher</button>
+            </form>
+    <br>
+                <div id="city" class="box"></div>
+                <div id="temp" class="box"></div>
+                <div id="humidity" class="box"></div>
+                <div id="wind" class="box"></div>
+
+</div>
+    <div class="popular_content col-12" style="max-width: 80vw; margin-left: auto; margin-right: auto;">
+        <div class="popular text-center">
+            <h3>Destinations Récentes</h3>
+            <hr class="style1">
+        </div>
+        <br>
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner" style="max-width: 80vw; margin-left: auto; margin-right: auto">
                 {% for host in hosts %}
-                    <div class="carousel-item active">
-                        <div class="card mb-3">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <img src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg" class="card-img" alt="...">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                        <a class="btn btn-primary">Button</a>
+                <div {% if loop.index0 == 0 %} class="carousel-item active" {% else %} class="carousel-item" {% endif %}">
+                <div class="card mb-3">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            {% for image in host.images %}
+                                {% for image in host.images %}
+                                    <div>
+                                        <img src="{{ asset('/uploads/'~image.name) }}" alt="{{ host.title }}" width="95%">
                                     </div>
-                                </div>
-                            </div>
+                                {% endfor %}
+                            {% endfor %}
                         </div>
-                    </div>
-
-                <div class="carousel-item">
-                    <div class="card mb-3" style="max-width: 80vw; margin-left: auto; margin-right: auto">
-                        <div class="row no-gutters">
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                    <a class="btn btn-primary">Button</a>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg" class="card-img" alt="...">
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ host.title }}</h5>
+                                <p class="card-text">{{ host.summarise | slice(0, 150)}}</p>
+                                <p class="card-text">Situé en {{ host.region }}</p>
+                                <br>
+                                <hr>
+                                <br>
+                                <p class="card-text">Vous souhaitez réserver ce terrain? N'hésitez plus, contactez l'hôte</p>
+                                <a class="btn btn-info" href="{{ path('host_show', {'id': host.id}) }}">Voir l'hote</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
             </div>
+            {% endfor %}
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
+        <a href="{{ path('host_host') }}">Voir toutes les destinations</a>
+        <br>
+        <br>
+        <br>
+        <br>
     </div>
-    <section class="jumbotron text-center" style="max-width: 80vw; margin-left: auto; margin-right: auto">
+
+    <section class="jumbotron text-center newsletter" style="margin-left: auto; margin-right: auto">
         <div class="container">
             <h1>Pour recevoir notre Newsletter</h1>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
-                <div class="input-group" id="search-input">
-                    <div class="form-outline">
-                        <input type="search" id="form1" class="form-control" placeholder="Search..."/>
-                    </div>
-                    <button type="button" class="btn btn-primary">
-                        <i class="ri-search-line"></i>
-                    </button>
+            <div class="input-group" id="search-input">
+                <div class="form-outline">
+                    <input type="search" id="form1" class="form-control" placeholder="Entrez votre Email"/>
                 </div>
-        </div>
-    </section>
-        <div class="album py-5 bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-muted">9 mins</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-muted">9 mins</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                            <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-muted">9 mins</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <button type="button" class="btn btn-info">Valider l'email</button>
             </div>
         </div>
+    </section>
+<br>
+<br>
+    <div class="popular text-center">
+        <h3>Lieux à visiter Récents</h3>
+        <hr class="style1">
+    </div>
+    <br>
+    <div id="carouselExample" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner" style="max-width: 80vw; margin-left: auto; margin-right: auto">
+            {% for environnement in environnements %}
+                <div {% if loop.index0 == 0 %} class="carousel-item active" {% else %} class="carousel-item" {% endif %}">
+                    <div class="card mb-3">
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                {% for image in environnement.images %}
+                                    {% for image in environnement.images %}
+                                        <div>
+                                            <img src="{{ asset('/uploads/'~image.name) }}" alt="" width="100%">
+                                        </div>
+                                    {% endfor %}
+                                {% endfor %}
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ environnement.title }}</h5>
+                                    <p class="card-text">{{ environnement.description | slice(0, 300)}}</p>
+                                    <p class="card-text">Situé en {{ environnement.region }}</p>
+                                    <br>
+                                    <hr>
+                                    <br>
+                                    <p class="card-text">Vous souhaitez réserver ce terrain? N'hésitez plus, contactez l'hôte</p>
+                                    <a class="btn btn-info" href="{{ path('environnement_show', {'id': environnement.id}) }}">Voir le lieu</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    <a href="{{ path('host_host') }}">Voir tous les lieux à visiter</a>
+    <br>
+    <br>
+    </div>
+    </div>
+    <div class="popular text-center">
+        <h3>Besoin de conseil?</h3>
+        <br>
+        <hr class="style1">
+        <br>
+        <h4>Faites un tour sur notre blog</h4>
+        <br>
+        <a href="{{ path('blogpost_blog') }}">Voir le blog</a>
+        <br>
+    </div>
+    <div class="popular_content" style="max-width: 80vw; margin-left: auto; margin-right: auto">
+        <div class="album text-center">
+            <div class="row">
+                    {% for blogpost in blogposts %}
+                        <div class="col-md-4">
+                            <div class="card mb-4 shadow-sm">
+                                {% for image in blogpost.images %}
+                                    {% for image in blogpost.images %}
+                                        <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="{{ asset('/uploads/'~image.name) }}" alt="{{ blogpost.title }}">
+                                    {% endfor %}
+                                {% endfor %}
+                                <div class="card-body">
+                                    <h4 class="card-title">{{ blogpost.title | slice(0, 20)}}</h4>
+                                    <p class="card-text">{{ blogpost.content | slice(0, 80)}}...</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <a class="btn btn-info" href="{{ path('blogpost_show', {'id': blogpost.id}) }}">Voir l'article</a>
+                                        </div>
+                                        <small class="text-muted">Crée le {{ blogpost.createdAt ? blogpost.createdAt|date('d-m-Y') : '' }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+            </div>
+    </div>
 
 
 

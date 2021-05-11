@@ -27,12 +27,14 @@
                         <p>Nom : {{ app.user.lastname }} </p>
                         <p>Prénom : {{ app.user.firstname }}</p>
                         <p>E-mail : {{ app.user.email }}</p>
+{#                        <p>{{ app.user.host.title }}</p>#}
                     </div>
                     <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">...</div>
                     <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
                     <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                         {% if is_granted('ROLE_HOST') %}
                                 <p>Vous êtes déja un hôte</p>
+                                <a href="{{path('host_new')}}" class="nav-link text-uppercase font-weight-bold" style="color: #ffdf00">Ajouter terrain</a>
                             {% else %}
                                 <a href="{{ path('sethoste') }}" class="">Devenir hote</a>
                         {% endif %}

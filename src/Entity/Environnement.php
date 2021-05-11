@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EnvironnementRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -46,6 +48,51 @@ class Environnement
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $Number_phone;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Images", mappedBy="environnement",cascade={"persist"})
+     */
+    private $images;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Options::class, inversedBy="environnements",cascade={"persist"})
+     */
+    private $Options;
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
+
+    /**
+     * @return Collection|Images[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Images $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+            $image->setEnvironnement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Images $image): self
+    {
+        if ($this->images->contains($image)) {
+            $this->images->removeElement($image);
+            // set the owning side to null (unless already changed)
+            if ($image->getEnvironnement() === $this) {
+                $image->setEnvironnement(null);
+            }
+        }
+        return $this;
+    }
 
     public function getId(): ?int
     {
@@ -120,6 +167,18 @@ class Environnement
     public function setNumberPhone(?string $Number_phone): self
     {
         $this->Number_phone = $Number_phone;
+
+        return $this;
+    }
+
+    public function getOptions(): ?Options
+    {
+        return $this->Options;
+    }
+
+    public function setOptions(?Options $Options): self
+    {
+        $this->Options = $Options;
 
         return $this;
     }

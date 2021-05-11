@@ -4,6 +4,7 @@ body {
 
 .navbar {
     transition: all 0.4s;
+    background: rgba(85, 85, 85, 0.52);
 }
 
 .navbar .nav-link {
@@ -94,7 +95,7 @@ body {
     -o-transition: all 1s ease;
     -ms-transition: all 1s ease;
     transition: all 1s ease;
-    height: 10em;
+    height: 13em;
 }
 .footer #container{
     margin-top:5px;
@@ -149,10 +150,19 @@ body {
 }
 
 hr.style1 {
-    height: 10px;
     border: 0;
-    color: #41abb9;
-    box-shadow: 0 10px 10px -10px #41abb9 inset;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left, #fffaf1, rgba(65, 171, 185, 0.69), #fffaf1);
+    background-image: -moz-linear-gradient(left, #fffaf1, rgba(65, 171, 185, 0.69), #fffaf1);
+    background-image: -ms-linear-gradient(left, #fffaf1, rgba(65, 171, 185, 0.69), #fffaf1);
+    background-image: -o-linear-gradient(left, #fffaf1, rgba(65, 171, 185, 0.69), #fffaf1);
+}
+
+.newsletter{
+    background-image: -webkit-linear-gradient(left, #fffaf1, rgba(65, 171, 185, 0.69), #fffaf1);
+    background-image: -moz-linear-gradient(left, #fffaf1, rgba(65, 171, 185, 0.69), #fffaf1);
+    background-image: -ms-linear-gradient(left, #fffaf1, rgba(65, 171, 185, 0.69), #fffaf1);
+    background-image: -o-linear-gradient(left, #fffaf1, rgba(65, 171, 185, 0.69), #fffaf1);
 }
 .popular{
     margin-top: 20px;
@@ -161,18 +171,14 @@ hr.style1 {
     margin: auto;
 }
 
-#map{ /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
-    height:400px;
-}
-
 .popular_content{
-    padding:60px
+    padding:10px
 }
 .carousel-indicators li{
     background-color: #41abb9;
 }
-.jumbotron{
-    background: linear-gradient(90deg, rgba(65,171,185,0) 0%, rgba(65,171,185,0.4233894241290266) 39%, rgba(65,171,185,0.6922969871542367) 100%);
+.why{
+    background: linear-gradient(90deg, rgba(65,171,185,0) 0%, rgba(65,171,185,0.4233894241290266) 39%, rgba(65, 171, 185, 0.69) 100%);
 }
 .jumbotron_blog{
     background-image: url("../img/header.jpg");
@@ -251,4 +257,86 @@ hr.style1 {
 
 .nav-pills .nav-link.active{
     background-color:#41abb9;
+}
+
+#map {
+    height: 500px;
+}
+
+p.false{
+    display:none
+}
+
+.faq_img{
+    background-image: url("../img/faq_index.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100vw;
+    height: 30vh;
+}
+.env_img{
+    background-image: url("../img/slide1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100vw;
+    height: 30vh;
+}
+.blog_img{
+    background-image: url("../img/header.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100vw;
+    height: 30vh;
+}
+
+
+.box-container
+{
+    width:300px;
+    height:300px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.box
+{
+    width: 150px;
+    height: 150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color:white;
+}
+
+#city
+{
+    background-color: teal;
+}
+
+#temp
+{
+    background-color: #41abb9;
+}
+
+#humidity
+{
+    background-color: rgb(25, 104, 70);
+}
+
+#wind
+{
+    background-color:rgb(66, 127, 151);
+}
+
+.footer a{
+    color: white;
+    text-decoration: none;
+}
+.footer p{
+    color: white;
 }

@@ -1,10 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Blogpost index{% endblock %}
+{% block title %}Hôtes{% endblock %}
 
 {% block body %}
     <main role="main">
-
         <div class="jumbotron host_img text-center">
             <div class="container">
             </div>
@@ -26,12 +25,11 @@
                                     {% endfor %}
                                 {% endfor %}
                                 <div class="card-body">
-                                    <p class="card-text">{{ host.summarise }}</p>
+                                    <p class="card-text">{{ host.summarise | slice(0,150)}}..</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <a class="btn btn-sm btn-outline-secondary" href="{{ path('host_show', {'id': host.id}) }}">Voir</a>
+                                            <a class="btn btn-sm btn-info" href="{{ path('host_show', {'id': host.id}) }}">Voir</a>
                                         </div>
-                                        <small class="text-muted">9 mins</small>
                                     </div>
                                 </div>
                             </div>

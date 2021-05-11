@@ -7,6 +7,7 @@ use App\Entity\Images;
 use App\Form\HostType;
 use App\Repository\HostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,6 +23,16 @@ class HostController extends AbstractController
     public function blog(HostRepository $hostRepository): Response
     {
         return $this->render('host/host.html.twig', [
+            'hosts' => $hostRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/index", name="host_index", methods={"GET"})
+     */
+    public function index(HostRepository $hostRepository): Response
+    {
+        return $this->render('host/index.html.twig', [
             'hosts' => $hostRepository->findAll(),
         ]);
     }
@@ -84,8 +95,24 @@ class HostController extends AbstractController
     {
         $form = $this->createForm(HostType::class, $host);
         $form->handleRequest($request);
+        $images = $form->get('images')->getData();
 
         if ($form->isSubmitted() && $form->isValid()) {
+            foreach($images as $image){
+                // On génère un nouveau nom de fichier
+                $fichier = md5(uniqid()).'.'.$image->guessExtension();
+
+                // On copie le fichier dans le dossier uploads
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $fichier
+                );
+
+                // On crée l'image dans la base de données
+                $img = new Images();
+                $img->setName($fichier);
+                $host->addImage($img);
+            }
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('host_index');
@@ -112,12 +139,24 @@ class HostController extends AbstractController
     }
 
     /**
-     * @Route("/", name="host_index", methods={"GET"})
+     * @Route("/supprime/image/{id}", name="host_delete_image", methods={"HEAD","GET","DELETE"})
      */
-    public function index(HostRepository $hostRepository): Response
-    {
-        return $this->render('host/index.html.twig', [
-            'hosts' => $hostRepository->findAll(),
-        ]);
+    public function deleteImage(Images $image, Request $request){
+        $data = json_decode($request->getContent(), true);
+
+        // On vérifie si le token est valide
+
+        // On récupère le nom de l'image
+        $nom = $image->getName();
+        // On supprime le fichier
+        unlink($this->getParameter('images_directory').'/'.$nom);
+
+        // On supprime l'entrée de la base
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($image);
+        $em->flush();
+
+        // On répond en json
+        return new JsonResponse(['success' => 1]);
     }
 }

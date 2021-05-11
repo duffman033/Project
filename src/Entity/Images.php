@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ImagesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Twig\Environment;
 
 /**
  * @ORM\Entity(repositoryClass=ImagesRepository::class)
@@ -32,6 +33,11 @@ class Images
      * @ORM\ManyToOne(targetEntity="App\Entity\Host", inversedBy="images")
      */
     private $host;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Environnement", inversedBy="images")
+     */
+    private $environnement;
 
     public function getId(): ?int
     {
@@ -71,6 +77,18 @@ class Images
     public function setHost(?Host $host): self
     {
         $this->host = $host;
+
+        return $this;
+    }
+
+    public function getEnvironnement(): ?Environnement
+    {
+        return $this->environnement;
+    }
+
+    public function setEnvironnement(?Environnement $environnement): self
+    {
+        $this->environnement = $environnement;
 
         return $this;
     }

@@ -24,8 +24,8 @@
                 <td>{{ blogpost.content }}</td>
                 <td>{{ blogpost.createdAt ? blogpost.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('blogpost_show', {'id': blogpost.id}) }}">show</a>
-                    <a href="{{ path('blogpost_edit', {'id': blogpost.id}) }}">edit</a>
+                    <a href="{{ path('blogpost_show', {'id': blogpost.id}) }}">Voir</a>
+                    <a href="{{ path('blogpost_edit', {'id': blogpost.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}

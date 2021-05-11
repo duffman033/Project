@@ -6,28 +6,26 @@
     <header class="masthead">
         <div class="intro-body">
             <div class="container col-12 d-flex flex-column align-items-center">
-                <h3 class="title" style="margin-top: 10%">{{ blogpost.title }}</h3>
-                <br>
-                {% for image in blogpost.images %}
+                <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 60vw;">
                     {% for image in blogpost.images %}
-                        <img src="{{ asset('/uploads/'~image.name) }}" alt="{{ blogpost.title }}">
+                        {% for image in blogpost.images %}
+                            <img style="width: 50vw" src="{{ asset('/uploads/'~image.name) }}" alt="{{ blogpost.title }}">
+                        {% endfor %}
                     {% endfor %}
-                {% endfor %}
-                <div class="body col-6">
-                    <br>
-                    <p class="text">{{ blogpost.content }}</p>
-                    <p class="text">{{ blogpost.createdAt ? blogpost.createdAt|date('Y-m-d H:i:s') : '' }}</p>
-                    <p class="text">Catégorie {{ blogpost.category}}</p>
-                    <a href="{{ path('blogpost_index') }}"><i class="ri-arrow-left-line"></i>Retourner au blog</a>
-                    <br>
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <a href="{{ path('blogpost_edit', {'id': blogpost.id}) }}">edit</a>
-                        {{ include('blogpost/_delete_form.html.twig') }}
-                    {% endif %}
-
+                    <div class="card-body">
+                        <br>
+                        <p class="text">{{ blogpost.content }}</p>
+                        <p class="text">{{ blogpost.createdAt ? blogpost.createdAt|date('Y-m-d H:i:s') : '' }}</p>
+                        <p class="text">Catégorie {{ blogpost.category}}</p>
+                        <a href="{{ path('blogpost_blog') }}"><i class="ri-arrow-left-line"></i>Retourner au blog</a>
+                        <br>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a class="btn btn-info" href="{{ path('blogpost_edit', {'id': blogpost.id}) }}">edit</a>
+                            {{ include('blogpost/_delete_form.html.twig') }}
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
     </header>
-
 {% endblock %}
